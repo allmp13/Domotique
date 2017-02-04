@@ -1,7 +1,11 @@
  // Version modifié pour compatibilité avec mysensors 2.x
 
+// Enable debug prints to serial monitor
+#define MY_DEBUG
+
 #define SN "Volet_JMD"
 #define SV "2.0.1C"
+#define MY_RADIO_NRF24
 
 #include <MySensors.h> 
 #include <SPI.h>
@@ -21,7 +25,7 @@ boolean stringComplete = false;*/
 boolean sens; // 0 baisse 1 monte
 boolean stoppe = false;
 
-MySensor gw;
+//MySensor gw;
 
 static int currentLevel = 0;  // Current dim level...
 MyMessage dimmerMsg(0, V_DIMMER);
@@ -43,6 +47,8 @@ void setup()
     ; // wait for serial port to connect. Needed for Leonardo only
   }
 
+
+
 enmarche = false;
 fin = millis();
 //ecrireposvolet(100);
@@ -53,33 +59,33 @@ fin = millis();
 //Serial.println(ip);
 //Serial.print(F("Position Initiale des Volets: "));
 //Serial.println(fin);
-  positionvolet=gw.loadState(0);
+  positionvolet=loadState(0);
   Serial.println(positionvolet);
   
   Serial.println( SN ); 
-  gw.begin( incomingMessage );
+  //begin( incomingMessage );
   
   // Register the LED Dimmable Light with the gateway
-  gw.present( 0, S_DIMMER );
-  
-  gw.sendSketchInfo(SN, SV);
-  // Pull the gateway's current dim level - restore light level upon sendor node power-up
-  gw.request( 0, V_DIMMER );
 
+  // Pull the gateway's current dim level - restore light level upon sendor node power-up
+  request( 0, V_DIMMER );
 }
 
-/***
- *  Dimmable LED main processing loop 
- */
+void presentation()
+{
+  present( 0, S_DIMMER );
+  sendSketchInfo(SN, SV);
+}
+
 void loop() 
 {
   arretvolet();
-  gw.process();
+  //process();
 }
 
 
 
-void incomingMessage(const MyMessage &message) {
+void receive(const MyMessage &message) {
   if (message.type == V_LIGHT || message.type == V_DIMMER) {
     
     //  Retrieve the power or dim level from the incoming request message
@@ -94,18 +100,6 @@ void incomingMessage(const MyMessage &message) {
       }
     else
     {
-   /* 
-    // Adjust incoming level if this is a V_LIGHT variable update [0 == off, 1 == on]
-    requestedLevel *= ( message.type == V_LIGHT ? 100 : 1 );
-    
-    // Clip incoming level to valid range of 0 to 100
-    requestedLevel = requestedLevel > 100 ? 100 : requestedLevel;
-    requestedLevel = requestedLevel < 0   ? 0   : requestedLevel;
-    
-    Serial.print( "Changing level to " );
-    Serial.print( requestedLevel );
-    Serial.print( ", from " ); 
-    Serial.println( currentLevel );*/
         if (!enmarche) 
                {
                  depart=millis();
@@ -196,10 +190,9 @@ void arret()
   digitalWrite(VOLET_STOP, LOW);    // set the LED off 
   //ecrireposvolet(positionvolet);
   // Inform the gateway of the current DimmableLED's SwitchPower1 and LoadLevelStatus value...
-  gw.send(lightMsg.set(positionvolet > 0 ? 1 : 0));
-  // hek comment: Is this really nessesary?
-  gw.send( dimmerMsg.set(positionvolet) );
-  gw.saveState(0, positionvolet);
+  send(lightMsg.set(positionvolet > 0 ? 1 : 0));
+  send(dimmerMsg.set(positionvolet) );
+  saveState(0, positionvolet);
   Serial.println(F("Arret"));
   }
 }
