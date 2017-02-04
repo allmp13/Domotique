@@ -4,7 +4,7 @@
 #define MY_DEBUG
 
 #define SN "Volet_JMD"
-#define SV "2.0.1C"
+#define SV "2.1"
 #define MY_RADIO_NRF24
 
 #include <MySensors.h> 
@@ -52,7 +52,6 @@ void setup()
 enmarche = false;
 fin = millis();
 //ecrireposvolet(100);
-//Serial.println("Version optimvoletokv1");
  Serial.println(__FILE__);
  Serial.println(__DATE__);
  Serial.println(__TIME__);
@@ -64,10 +63,6 @@ fin = millis();
   
   Serial.println( SN ); 
   //begin( incomingMessage );
-  
-  // Register the LED Dimmable Light with the gateway
-
-  // Pull the gateway's current dim level - restore light level upon sendor node power-up
   request( 0, V_DIMMER );
 }
 
