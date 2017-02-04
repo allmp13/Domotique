@@ -78,8 +78,8 @@
 
 #define MY_GATEWAY_ESP8266
 
-#define MY_ESP8266_SSID "MySSID"
-#define MY_ESP8266_PASSWORD "MyVerySecretPassword"
+#define MY_ESP8266_SSID "Xiaomi_71F2"
+#define MY_ESP8266_PASSWORD "Ab&l40v."
 
 // Enable UDP communication
 //#define MY_USE_UDP
@@ -92,7 +92,7 @@
 //#define MY_IP_ADDRESS 192,168,178,87
 
 // If using static ip you need to define Gateway and Subnet address as well
-#define MY_IP_GATEWAY_ADDRESS 192,168,178,1
+#define MY_IP_GATEWAY_ADDRESS 192,168,0,17
 #define MY_IP_SUBNET_ADDRESS 255,255,255,0
 
 // The port to keep open on node server mode
