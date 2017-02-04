@@ -1,7 +1,7 @@
  // Version modifié pour compatibilité avec mysensors 2.x
 
 // Enable debug prints to serial monitor
-#define MY_DEBUG
+//#define MY_DEBUG
 
 #define SN "Volet_JMD"
 #define SV "2.1"
@@ -51,7 +51,7 @@ void setup()
 
 enmarche = false;
 fin = millis();
-//ecrireposvolet(100);
+//ecrireposvolet(0);
  Serial.println(__FILE__);
  Serial.println(__DATE__);
  Serial.println(__TIME__);
@@ -59,6 +59,7 @@ fin = millis();
 //Serial.print(F("Position Initiale des Volets: "));
 //Serial.println(fin);
   positionvolet=loadState(0);
+  //positionvolet=0;
   Serial.println(positionvolet);
   
   Serial.println( SN ); 
