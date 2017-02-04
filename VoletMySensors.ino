@@ -1,7 +1,7 @@
  // Version modifié pour compatibilité avec mysensors 2.x
 
 #define SN "Volet_JMD"
-#define SV "2.0.1"
+#define SV "2.0.1C"
 
 #include <MySensors.h> 
 #include <SPI.h>
