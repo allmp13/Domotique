@@ -3,7 +3,7 @@
 #define SN "Volet_JMD"
 #define SV "2.0"
 
-#include <MySensor.h> 
+#include <MySensors.h> 
 #include <SPI.h>
 
 #define VOLET_HAUT 5
