@@ -10,6 +10,8 @@
 #include <MySensors.h> 
 #include <SPI.h>
 
+#define NODE_ID 2
+
 #define VOLET_HAUT 5
 #define VOLET_STOP 6
 #define VOLET_BAS 7
