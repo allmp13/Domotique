@@ -62,7 +62,7 @@ void loop() {
  
 void presentation()
 {
-  sendSketchInfo("AWI RGB Light", "1.1");
+  sendSketchInfo("JMD LED", "1.1");
   present(CHILD_ID, S_RGB_LIGHT);        // present to controller
 }
  
