@@ -14,7 +14,7 @@ void setup() {
   Serial.begin(9600);
   
   // Transmitter is connected to Arduino Pin #10  
-  mySwitch.enableTransmit(4);
+  mySwitch.enableTransmit(10);
   pinMode(13, OUTPUT);
   // Optional set pulse length.
   // mySwitch.setPulseLength(320);
