@@ -1,8 +1,11 @@
 // Example sketch showing how to control physical relays.
 // This example will remember relay state even after power failure.
 
+#define SN "MultiSensorsJMD"
+#define SV "2.0"
+
 // Enable debug prints
-#define MY_DEBUG
+//#define MY_DEBUG
 
 // Enable and select radio type attached
 #define MY_RADIO_NRF24
@@ -64,10 +67,16 @@ void presentation()
   Serial.println();
   Serial.print ("Nom fichier: ");
   Serial.println (__FILE__);
+  Serial.println(__DATE__);
+  Serial.println(__TIME__);
+  Serial.print("SN = ");
+  Serial.println( SN ); 
+  Serial.print("Version = ");
+  Serial.println( SV ); 
   Serial.println();
 
   // Send the sketch version information to the gateway and Controller
-  sendSketchInfo("MultiSensorsJMD", "2.0");
+    sendSketchInfo(SN, SV);
   // Initialize RF Transmitter
   mySwitch.enableTransmit( RCTransmissionPin );
 
@@ -168,15 +177,13 @@ void receive(const MyMessage &message) {
       }
      }
 
-      Serial.print("Recu");
-
      // Store state in eeprom
      saveState(message.sensor, message.getBool());
      // Write some debug info
      Serial.print("Incoming change for sensor:");
      Serial.print(message.sensor);
      Serial.print(", New status: ");
-     Serial.println(message.getBool());
+     Serial.print(message.getBool());
      Serial.print(", Message Type: ");
      Serial.println(message.type);
      //gw.sendBatteryLevel(70);
