@@ -1,7 +1,7 @@
 // Example sketch showing how to control physical relays.
 // This example will remember relay state even after power failure.
 
-#include <MySensor.h>
+#include <MySensors.h>
 #include <SPI.h>
 #include <RCSwitch.h>
 #include <DHT.h>
