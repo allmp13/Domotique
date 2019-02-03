@@ -1,5 +1,5 @@
 /**
- * The MySensors Arduino library handles the wireless radio link and protocol
+ * The MySensors Arduino library handles the wireless radio link and protocols
  * between your home built sensors/actuators and HA controller of choice.
  * The sensors forms a self healing radio network with optional repeaters. Each
  * repeater and gateway builds a routing tables in EEPROM which keeps track of the
